@@ -1,0 +1,61 @@
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.android.tools.build:gradle:8.6.0"
+  }
+}
+
+apply plugin: "com.android.library"
+
+android {
+  namespace "com.webassembly"
+  compileSdkVersion 35
+
+  defaultConfig {
+    minSdkVersion 24
+    targetSdkVersion 35
+    externalNativeBuild {
+      cmake {
+        cppFlags "-O2 -fexceptions -frtti"
+        // React Native's prefab packages are built against the shared STL.
+        arguments "-DANDROID_STL=c++_shared"
+        abiFilters "arm64-v8a", "x86_64"
+      }
+    }
+  }
+
+  externalNativeBuild {
+    cmake {
+      path "CMakeLists.txt"
+    }
+  }
+
+  buildFeatures {
+    prefab true
+  }
+
+  packagingOptions {
+    excludes = ["META-INF", "META-INF/**", "**/libjsi.so", "**/libreactnative.so", "**/libc++_shared.so"]
+  }
+
+  sourceSets {
+    main {
+      // Codegen output shipped with the package (see codegenConfig in
+      // package.json); the consuming app does not run codegen for this
+      // library.
+      java.srcDirs += ["generated/java"]
+    }
+  }
+}
+
+repositories {
+  google()
+  mavenCentral()
+}
+
+dependencies {
+  implementation "com.facebook.react:react-android"
+}

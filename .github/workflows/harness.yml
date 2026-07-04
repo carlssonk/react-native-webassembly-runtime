@@ -1,0 +1,33 @@
+name: Harness Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  harness:
+    name: WebAssembly spec suite + binding tests (JSC + wasm3)
+    # macos-15: the harness's JSC adapter uses the BigInt C API (macOS 15+).
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install wabt (wast2json)
+        run: brew install wabt
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build harness and run test suites
+        run: ./harness/run-ci.sh

@@ -1,0 +1,140 @@
+{
+  "name": "react-native-webassembly-runtime",
+  "version": "0.0.0",
+  "description": "The standard WebAssembly JS API for React Native (JSI + wasm3)",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "react-native-webassembly-runtime-source": "./src/index.tsx",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./polyfill": {
+      "react-native-webassembly-runtime-source": "./src/polyfill/index.ts",
+      "types": "./lib/typescript/src/polyfill/index.d.ts",
+      "default": "./lib/module/polyfill/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "react-native.config.js",
+    "*.podspec",
+    "!lib/typescript/example",
+    "!ios/build",
+    "!android/build",
+    "!android/gradle",
+    "!android/gradlew",
+    "!android/gradlew.bat",
+    "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "!**/.*"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "prepack": "bob build",
+    "example": "npm --prefix example run",
+    "bootstrap": "npm --prefix example install && pnpm install"
+  },
+  "keywords": [
+    "react-native",
+    "webassembly",
+    "runtime",
+    "polyfill",
+    "wasm",
+    "wasm3",
+    "jsi",
+    "ios",
+    "android"
+  ],
+  "repository": "https://github.com/carlssonk/react-native-webassembly-runtime",
+  "author": "carlssonk <npm@carlssonk.se> (https://github.com/carlssonk)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlssonk/react-native-webassembly-runtime/issues"
+  },
+  "homepage": "https://github.com/carlssonk/react-native-webassembly-runtime#readme",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^21.2.0",
+    "@eslint/compat": "^2.1.0",
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^10.0.1",
+    "@react-native-community/cli": "20.1.0",
+    "@react-native/eslint-config": "^0.86.0",
+    "@types/react": "~19.2.17",
+    "commitlint": "^21.2.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-ft-flow": "^3.0.11",
+    "eslint-plugin-prettier": "^5.5.6",
+    "lefthook": "^2.1.9",
+    "pod-install": "^0.1.0",
+    "prettier": "^3.9.4",
+    "react": "19.2.3",
+    "react-native": "0.86.0",
+    "react-native-builder-bob": "^0.43.0",
+    "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": ">=0.76.0"
+  },
+  "packageManager": "pnpm@10.34.3+sha512.f2c531b08829d7be7f03c90addc266615f9c5477463e4bf1d275cb263ce9ea57cf0d5599110d94649a9bb3fed9f0b5efcea74a7016b61532a24cb9ad87860c1d",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "lefthook"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ],
+      "codegen"
+    ]
+  },
+  "codegenConfig": {
+    "name": "RNWebassemblySpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "outputDir": {
+      "ios": "ios/generated",
+      "android": "android/generated"
+    },
+    "android": {
+      "javaPackageName": "com.webassembly"
+    },
+    "includesGeneratedCode": true
+  }
+}
