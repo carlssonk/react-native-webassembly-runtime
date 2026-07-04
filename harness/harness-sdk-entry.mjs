@@ -3,7 +3,7 @@ import { installWebAssemblyPolyfill } from '../src/polyfill/core';
 
 import { runKaspaSdkTest } from './kaspa-sdk-test.mjs';
 
-installWebAssemblyPolyfill();
+installWebAssemblyPolyfill({ force: true });
 
 const bytes = __readFileArrayBuffer(__KASPA_SDK_WASM_PATH__);
 

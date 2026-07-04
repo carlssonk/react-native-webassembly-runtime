@@ -18,7 +18,7 @@ const EXPECTED_SEED =
 
 const presizePages = globalThis.__PRESIZE_PAGES__ || 0;
 
-installWebAssemblyPolyfill({ memoryInitialPages: presizePages });
+installWebAssemblyPolyfill({ memoryInitialPages: presizePages, force: true });
 
 (async () => {
   const wasm = await init({

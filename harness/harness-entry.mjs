@@ -5,7 +5,7 @@ import { installWebAssemblyPolyfill } from '../src/polyfill/core';
 
 import { runKaspaKeygenTest } from './kaspa-keygen-test.mjs';
 
-installWebAssemblyPolyfill();
+installWebAssemblyPolyfill({ force: true });
 
 const bytes = __readFileArrayBuffer(__KASPA_WASM_PATH__);
 

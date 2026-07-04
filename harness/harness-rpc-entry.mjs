@@ -10,7 +10,7 @@ import init, {
   version,
 } from '../../rusty-kaspa/wasm/web/kaspa-rpc/kaspa.js';
 
-installWebAssemblyPolyfill();
+installWebAssemblyPolyfill({ force: true });
 
 const bytes = __readFileArrayBuffer(__KASPA_RPC_WASM_PATH__);
 

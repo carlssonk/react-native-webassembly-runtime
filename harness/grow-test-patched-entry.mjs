@@ -3,7 +3,7 @@
 import { installWebAssemblyPolyfill } from '../src/polyfill/core';
 import init, { Mnemonic, version } from './build/kaspa-glue-patched.js';
 
-installWebAssemblyPolyfill();
+installWebAssemblyPolyfill({ force: true });
 
 const FIXED =
   'hunt bitter praise lift buyer topic crane leopard uniform network inquiry over grain pass match crush marine strike doll relax fortune trumpet sunny silk';

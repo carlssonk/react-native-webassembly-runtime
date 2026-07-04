@@ -55,7 +55,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/carlssonk/react-native-webassembly-runtime",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlssonk/react-native-webassembly-runtime.git"
+  },
   "author": "carlssonk <npm@carlssonk.se> (https://github.com/carlssonk)",
   "license": "ISC",
   "bugs": {

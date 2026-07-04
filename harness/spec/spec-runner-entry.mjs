@@ -13,7 +13,7 @@
 //            against them.
 import { installWebAssemblyPolyfill, Module } from '../../src/polyfill/core';
 
-installWebAssemblyPolyfill({ stackSizeInBytes: 1024 * 1024 });
+installWebAssemblyPolyfill({ stackSizeInBytes: 1024 * 1024, force: true });
 
 const SPEC_DIR = __SPEC_DIR__;
 

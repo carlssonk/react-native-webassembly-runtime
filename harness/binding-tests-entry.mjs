@@ -4,7 +4,9 @@
 // the semantics overlap).
 import { installWebAssemblyPolyfill, Module } from '../src/polyfill/core';
 
-installWebAssemblyPolyfill();
+// force: the host JSC may ship its own WebAssembly (newer JSC exposes one
+// even without JIT); these suites must always exercise the wasm3 binding.
+installWebAssemblyPolyfill({ force: true });
 
 const results = [];
 const check = (label, cond) => results.push({ label, ok: !!cond });
@@ -59,6 +61,9 @@ const UNREACHABLE = new Uint8Array([
 ]);
 
 (async () => {
+  /* Guard against silently testing the host engine instead of the binding. */
+  check('polyfill is active', globalThis.WebAssembly.Module === Module);
+
   /* --- aliased exports + globals --- */
   {
     const { instance } = await WebAssembly.instantiate(ALIAS_GLOBALS);
