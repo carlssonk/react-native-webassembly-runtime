@@ -1,6 +1,6 @@
 {
   "name": "react-native-webassembly-runtime",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The standard WebAssembly JS API for React Native (JSI + wasm3)",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
